@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>remeras/ezpe</title>
+    <!-- fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+   
+    <!-- css -->
+    <link rel="stylesheet" href="../css/estilo.css">
+</head>
+<body>
+
+    <header class="encabezado">
+        <div>
+            <a href="#" class="logo">ezpe ba.</a>
+        </div>
+        <nav class="nav">
+            <ul class="lista">
+                <li class="lis_item"><a href="../index.html">Inicio</a></li>
+                <li class="lis_item"><a href="./remeras.html">Remeras</a></li>
+                <li class="lis_item"><a href="#">Encuesta</a></li>
+            </ul>
+
+            <div class="cart">
+                <button id="openCart" class="btn-carrito">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <span id="item_total">0</span>
+            </div>
+
+        </nav>
+    </header>
+    <main class="cuerpo main-remeras">
+
+        <div class="container">
+      
+            <div id="contenido-encuesta" class="contenido">
+                <section id="" class="categoria">
+                    <h2>Encuesta</h2>
+
+                    <form id="form" action="" class="formulario">
+
+                        <div class="form_item">
+                            <label for="">Nombre</label>
+                            <input id="nombre" class="form_input" type="text">
+                        </div>
+
+                        <div class="form_item">
+                            <label for="">Apellido</label>
+                            <input id="apellido" class="form_input" type="text">
+                        </div>
+
+
+                        <div class="form_item">
+                            <label for="">Email</label>
+                            <input id="email" class="form_input" type="email">
+                        </div>
+
+                        <div class="form_item">
+                            <label for="">Fecha De Nacimiento</label>
+                            <input id="fechaNacimiento" class="form_input" type="date">
+                        </div>
+
+
+                        <div class="form_item">
+                            <label for="">Sexo</label>
+                            <select class="form_input" id="sexo" class="">
+                                <option value="" disabled selected value="">Seleccione una opcion</option>
+                                <option value="Maculino">Maculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+
+                        <div class="form_item">
+                            <label for="">Valoracion de pagina</label>
+                            <select id="valoracion" class="form_input">
+                                <option value="" disabled selected value="">Seleccione una opcion</option>
+                                <option value="Lamentable">Lamentable</option>
+                                <option value="Mala">Mala</option>
+                                <option value="Podria ser mejor">Podria ser mejor</option>
+                                <option value="Cumple con mis expectativas">Cumple con mis expectativas</option>
+                                <option value="Me encantó">Me encantó</option>
+                            </select>
+                        </div>
+
+                        <div class="form_item item_coment">
+                            <label for="comment">Comentario:</label><br>
+                            <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
+                        </div>
+
+                        <div class="form_buttons">
+                            <button id="enviar" class="btn">Enviar</button>
+                            <button id="openModal" class="btn">Cancelar</button>
+                            <button id="cleanInput" class="btn">Restablecer valores</button>
+                        </div>
+                    </form>
+                   
+                </section>
+
+                <div id="modal" class="modal">
+                    <div class="modal-content">
+                        <h3>Desea cancelar la encuesta?</h3>
+                        <div class="modal-content_btn">
+                            <button id="btn-back" class="btn btn-confirm">Si, volver a la pagina anterior.</button>
+                            <button class="btn btn-cancel close">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="footer" >
+
+        <div class="footer-contenido">
+            <article class="footer-contenido-card">
+                <h4>Contacto</h4>
+                <p>Horario de atención Lunes a Sábados de 9hs a 18hs</p>
+                <a href="">nico@hotmail.com</a>
+            </article>
+            <article class="footer-contenido-card">
+                <h4>Redes sociales</h4>
+                <a target="_blank" href="https://www.instagram.com/">instagram</a>
+                <a target="_blank" href="https://www.facebook.com/">facebook</a>
+                <a target="_blank" href="https://www.youtube.com/">youtube</a>
+            </article>
+        </div>
+        
+        <div class="derechos">
+            <hr>
+            <p>Nicolas garcette - Aplicaciones Moviles 2024</p>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/6a02e16f95.js" crossorigin="anonymous"></script>
+    <script src="../js/encuesta.js"></script>
+</body>
+</html>
