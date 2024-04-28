@@ -1,4 +1,4 @@
-import { GetStorage, SaveStorage } from '../helpers/helper.js';
+import { GetStorage, SaveStorage,DeleteStorage } from '../helpers/helper.js';
 import { listaCompra as carrito } from '../Index.js';
 
 const botonesModal=document.getElementById("btnModal");
@@ -33,55 +33,6 @@ const agregarBotonesCarrito = () =>{
     })
 
 }
-
-// // crea tabla del modal
-// const crearModal=(lista,nodo,total)=>{
-//     nodo.innerHTML="";
-    
-//     let acumulador=`<table class="table table-striped table-hover">
-//                         <tr>
-//                             <th>Producto</th> 
-//                             <th>Precio</th>
-//                             <th>Cantidad</th>
-//                             <th>SubTotal</th>
-//                             <td></td>
-//                         </tr>`;
-
-
-//     lista.forEach((element)=>{
-//         acumulador+=
-//         ` <tr id="row${element}">
-//                 <td><img class="modal-img" src="./img/${element.imagen}">${element.marca} ${element.modelo}</td>
-//                 <td>$${element.precio}</td>
-//                 <td>
-//                     <p id="cant${element.id}">${element.cantidad}</p>
-//                     <div>
-//                         <a id="btn_restar${element.id}" class="masmenos" type="button"><i class="fa-solid fa-circle-minus"></i></a>
-//                         <a id="btn_sumar${element.id}" class="masmenos" type="button"><i class="fa-solid fa-circle-plus"></i></a>
-//                     </div>
-//                 </td>
-//                 <td id="sbTotal${element.id}">$${element.precio*element.cantidad}</td>
-//                 <td><a id="trash${element.id}" type="button"><i class="fa-solid fa-trash-can trash"></i></a></td>
-
-//             </tr> `;
-//     })
-
-//     acumulador+=`<tr>
-//                     <td>TOTAL</td>
-//                     <td>---</td>
-//                     <td>---</td>
-//                     <td id="montoTotal">$${total}</td>
-//                     <td></td>
-//                 </tr>
-//         </table>
-//         `
-
-//     nodo.innerHTML=acumulador;
-//     agregarBtnModal();
-//     botonBasura();
-//     botonSumaResta();
-// }
-
 
 const crearModal2=(lista,nodo,total)=>{
     nodo.innerHTML="";
@@ -153,6 +104,7 @@ const botonBasura=()=>{
 
             let posicion = carrito.GetCarrito().indexOf(element);
            borrarProductoModal(posicion);
+           DeleteStorage("carrito");
         })
 
     });

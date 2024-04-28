@@ -81,32 +81,54 @@ const GetData = async (url)=>{
     return data;
 }
 
+
+const UrlCategorias = "https://api.mercadolibre.com/sites/MLA/categories"
+let categories = await GetData(UrlCategorias);
+
+
+const GetCategoriaRandon=()=>{
+
+    //categories= categories.slice(0,10);
+    let indiceRandon = Math.floor(Math.random() * categories.length);
+    let categoriaRamdon = categories[indiceRandon];
+    return categoriaRamdon;
+}
+
+const url = 'https://api.mercadolibre.com/sites/MLA/'
+
+
+const UrlByCategoria =(categoria)=> `search?category=${categoria}&limit=10`;
+
 const cargarProductos= async ()=>{
 
-    let data = await GetData("https://fakestoreapi.com/products?limit=10");
+    let categoria = GetCategoriaRandon();
+    let api = url + UrlByCategoria(categoria.id);
+    let data = await GetData(api);
+    console.log(data.results);
     
     let allcards=document.getElementById("zapatilla-cards");
     allcards.innerHTML= "";
-    data.forEach((element)=>{
+    data.results.forEach((element)=>{
 
-        
-        allcards.innerHTML+=    `<article class="card">
-        <h2>${element.title}</h2>         
-        <img class="card-img" src="${element.image}" alt="zapatilla">
-        <p class="p-size">${element.price}</p>
-        <button id="btn-producto${element.id}" class="btn">Agregar</button>
-    </article>`;
-    
+        let card = document.createElement('article');
+        card.classList.add('card');
+        card.innerHTML = `  <h2>${element.title}</h2>         
+                            <img class="card-img" src="${element.thumbnail}" alt="zapatilla">
+                            <p class="p-size">${element.price}</p>
+                            <button id="btn-producto${element.id}" class="btn">Agregar</button>`;
+
+        allcards.appendChild(card);
     })
 
-    data.forEach((element)=>{
+    data.results.forEach((element)=>{
         document.getElementById(`btn-producto${element.id}`)?.addEventListener("click",()=>{
 
-            listaCompra.AddProducto(new producto(element.id,element.title,"generico",element.price,element.image));
+            listaCompra.AddProducto(new producto(element.id,element.title,"generico",element.price,element.thumbnail));
             SaveStorage(KeyCarrito,JSON.stringify(listaCompra.GetCarrito()));
             ActualizarContador();
         })
     })
 }
+
 cargarProductos();
 cargarCarrito();
