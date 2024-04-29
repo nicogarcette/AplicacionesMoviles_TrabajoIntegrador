@@ -4,11 +4,10 @@ const itemTotal= document.getElementById("item_total");
 const KeyCarrito = "carrito"
 
 class producto{
-    constructor(id,marca,modelo,precio,imagen){
+    constructor(id,nombre,precio,imagen){
 
         this.id = id;
-        this.marca = marca;
-        this.modelo = modelo;
+        this.nombre = nombre;
         this.precio = precio;
         this.imagen = imagen;
         this.cantidad = 1;
@@ -81,40 +80,74 @@ const GetData = async (url)=>{
     return data;
 }
 
+const getCategorias = async () =>{
 
-const UrlCategorias = "https://api.mercadolibre.com/sites/MLA/categories"
-let categories = await GetData(UrlCategorias);
+    return await GetData(url+UrlCategorias);
+}
+const url = 'https://api.mercadolibre.com/sites/MLA/';
+const UrlCategorias = "categories";
+const categorias = await getCategorias();
+
+const optionMenu = document.querySelector(".select-menu");
+const selectBtn = document.querySelector(".select-btn");
 
 
-const GetCategoriaRandon=()=>{
+const GetCategoriaRandon=(categorias)=>{
 
-    //categories= categories.slice(0,10);
-    let indiceRandon = Math.floor(Math.random() * categories.length);
-    let categoriaRamdon = categories[indiceRandon];
-    return categoriaRamdon;
+    let indiceRandon = Math.floor(Math.random() * categorias.length);
+    let categoriaRamdon = categorias[indiceRandon];
+    return categoriaRamdon.id;
 }
 
-const url = 'https://api.mercadolibre.com/sites/MLA/'
-
-
 const UrlByCategoria =(categoria)=> `search?category=${categoria}&limit=10`;
+const UrlByInput =(input)=> `search?q=${input}&limit=10`;
 
-const cargarProductos= async ()=>{
-
-    let categoria = GetCategoriaRandon();
-    let api = url + UrlByCategoria(categoria.id);
-    let data = await GetData(api);
-    console.log(data.results);
+const AgregarBuscador = (categorias) =>{
     
-    let allcards=document.getElementById("zapatilla-cards");
+    const select = document.getElementById("optionsCategories");
+    
+    categorias.map(element =>{
+        select.innerHTML += `<li class="option">
+                                <span class="option-text" data-value="${element.id}">${element.name}</span>
+                            </li>`;
+    })
+
+
+    const options = document.querySelectorAll(".option");
+    const btnText = document.getElementById("select-text");
+    
+    options.forEach(option=>{
+        option.addEventListener("click",()=>{
+            
+            let category = option.querySelector(".option-text");
+            btnText.innerText = category.textContent;
+            cargarProductos(category.getAttribute('data-value'));
+
+            optionMenu.classList.remove("active");
+        })
+    })
+
+}
+
+// la primera carga
+const cargarProductos= async (categoriaId)=>{
+
+    let api = url + UrlByCategoria(categoriaId);
+    let data = await GetData(api);
+    AgregarCards(data);
+}
+
+const AgregarCards=(data)=>{
+
+    let allcards = document.getElementById("cards-productos");
     allcards.innerHTML= "";
     data.results.forEach((element)=>{
 
         let card = document.createElement('article');
         card.classList.add('card');
         card.innerHTML = `  <h2>${element.title}</h2>         
-                            <img class="card-img" src="${element.thumbnail}" alt="zapatilla">
-                            <p class="p-size">${element.price}</p>
+                            <img class="card-img" src="${element.thumbnail}" alt="producto">
+                            <p class="p-size">$${element.price}</p>
                             <button id="btn-producto${element.id}" class="btn">Agregar</button>`;
 
         allcards.appendChild(card);
@@ -123,12 +156,37 @@ const cargarProductos= async ()=>{
     data.results.forEach((element)=>{
         document.getElementById(`btn-producto${element.id}`)?.addEventListener("click",()=>{
 
-            listaCompra.AddProducto(new producto(element.id,element.title,"generico",element.price,element.thumbnail));
+            listaCompra.AddProducto(new producto(element.id,element.title,element.price,element.thumbnail));
             SaveStorage(KeyCarrito,JSON.stringify(listaCompra.GetCarrito()));
             ActualizarContador();
         })
     })
+
+
 }
 
-cargarProductos();
+const GetProductByInput = async (input) =>{
+
+    let api = url + UrlByInput(input);
+    let data = await GetData(api);
+    AgregarCards(data);
+}
+
+// Manejar el evento submit del formulario
+document.querySelector('.search-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    var input = document.getElementById("search");
+    var valor = input.value;
+
+    GetProductByInput(valor);
+});
+
+
+
+
+selectBtn.addEventListener("click", ()=> optionMenu.classList.toggle("active"));
+
+cargarProductos(GetCategoriaRandon(categorias));
+AgregarBuscador(categorias.slice(0,10));
 cargarCarrito();

@@ -1,5 +1,5 @@
 import { GetStorage, SaveStorage,DeleteStorage } from '../helpers/helper.js';
-import { listaCompra as carrito } from '../Index.js';
+import { listaCompra as carrito } from '../index.js';
 
 const botonesModal=document.getElementById("btnModal");
 const contenidoCarrito = document.getElementById("btnCart");
@@ -44,13 +44,15 @@ const crearModal2=(lista,nodo,total)=>{
                         <div class="grid-item text_center" colspan="2">SubTotal</div>
                     </div>`;
 
+
+
     lista.forEach((element)=>{
         let subtotal = element.precio*element.cantidad;
         acumulador+=
         ` <div class="grid_carrito">
             <div class="grid-item">
                 <img class="modal-img" src="${element.imagen}">
-                <p>${element.marca} ${element.modelo}</p>
+                <p>${element.nombre}</p>
             </div>
 
             <div class="grid-item">$${element.precio}</div>
@@ -194,5 +196,3 @@ const botonBorrar =() => {
         }})
     });
 }
-
-

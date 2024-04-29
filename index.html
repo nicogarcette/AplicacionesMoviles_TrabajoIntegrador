@@ -24,7 +24,6 @@
         <nav class="nav">
             <ul class="lista">
                 <li class="lis_item"><a href="#">Inicio</a></li>
-                <li class="lis_item"><a href="./pages/remeras.html">Remeras</a></li>
                 <li class="lis_item"><a href="./pages/encuesta.html">Encuesta</a></li>
             </ul>
 
@@ -37,23 +36,34 @@
         </nav>
     </header>
 
-    <main class="cuerpo">
+    <main>
 
-        <div class="container">
-            <!-- cards -->
-            <div class="contenido">
-    
-                <section id="zapatilla" class="categoria">
-                    <h2>Productos</h2>
-                    <div id="zapatilla-cards" class="cards">
-        
-                    
+        <!-- cards -->
+        <div class="contenido">
+
+            <div id="buscador" class="buscador" >
+                <form action="" class="search-form">
+                    <input id="search" type="text" class="buscar-input" placeholder="¿Qué deseas buscar?">
+                    <button type="submit"><img src="./img/search.png" alt=""></button>
+                </form>
+
+                <div class="select-menu">
+                    <div class="select-btn">
+                        <span id="select-text" class="btn-text">Seleccione una categoria</span>
+                        <i class="fa-solid fa-chevron-down"></i>
                     </div>
-                </section>
 
+                    <ul id="optionsCategories" class="options"></ul>
+                </div>
             </div>
-        </div>
+            
+            <section class="categoria">
+                <h2>Productos</h2>
+                <div id="cards-productos" class="cards"></div>
+            </section>
 
+        </div>
+    
         <div id="modalCart" class="modal">
             <div class="modal-content modal_carrito">
                 
@@ -92,13 +102,15 @@
         
         <div class="derechos">
             <hr>
-            <p>Nicolas garcette - Aplicaciones Moviles 2024</p>
+            <p>Aplicaciones Moviles 2024</p>
         </div>
     </footer>
 
     <script src="https://kit.fontawesome.com/6a02e16f95.js" crossorigin="anonymous"></script>
     <script type="module" src="./js/index.js"></script>
     <script type="module" src="./js/modal/carrito.js"></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

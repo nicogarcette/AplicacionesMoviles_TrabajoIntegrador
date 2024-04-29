@@ -54,16 +54,11 @@
 }
 
 /* main */
-.cuerpo{
+main{
     background-color: #DDDDDD;
 }
 
-.container{
-    display: flex;
-    justify-content: center; 
-}
 .contenido{
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -364,4 +359,94 @@ header .cart span{
 
 .text_center{
     text-align: center;
+}
+
+
+.buscador{
+    margin-top: 5rem;
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.buscar-input{
+    padding: 12px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 18px;
+    width: 400px;
+    flex: 1;
+    border: 0;
+}
+
+.buscador form button{
+   border: 0;
+   border-radius: 50%;
+   width: 50px;
+   height: 50px;
+   cursor: pointer;
+   background: #06113C;
+}
+
+.buscador form button img{
+    width: 50%;
+}
+
+
+.select-menu{
+    width: 380px;
+    position: relative;
+}
+
+.select-menu .select-btn{
+    display: flex;
+    background: #fff;
+    padding: 12px;
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.select-btn i {
+    font-size: 25px;
+    transition: 0.2s all;
+}
+
+.select-menu .options{
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: none;
+    z-index: 1000;
+}
+
+.select-menu.active .options{
+    display: block;
+}
+
+
+.select-menu.active .select-btn i{
+    transform: rotate(-180deg);
+}
+
+
+.options .option{
+    display: flex;
+    cursor: pointer;
+    padding: 0 10px;
+    align-items: center;
+    height: 50px;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.options .option:hover{
+ 
+    background: #f2f2f2;
 }
