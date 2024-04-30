@@ -6,6 +6,7 @@
 
 /* header */
 .encabezado{
+    top: 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -74,7 +75,6 @@ main{
 }
 .menu-item{
     padding: 1vh;
-
 }
 .menu-item:hover{
     background-color: #DBE2EF;
@@ -113,10 +113,16 @@ main{
     flex-direction: column;
     margin: 1rem 2.5rem;
     transition: all .5s ease; 
-    max-width: 350px;  
-    max-height: 600px;
+    max-width: 300px;  
+    max-height: 500px;
 }
 
+.card-titulo{
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    padding: 0.2rem;
+}
 .card:hover{
     transform: scale(1.05);
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -126,9 +132,9 @@ main{
     /* width: 250px; */
 
     width: 100%;
-  height: 300px;
-  object-fit: cover;
-  object-position: bottom;
+    height: auto;
+    object-fit: cover;
+    object-position: bottom;
 }
 
 .card h2{
@@ -449,4 +455,81 @@ header .cart span{
 .options .option:hover{
  
     background: #f2f2f2;
+}
+
+
+.buttons-card{
+    display: flex;
+    justify-content: center;
+}
+
+.buttons-card button{
+    padding: .5rem;
+    margin: 0.2rem;
+}
+
+
+
+/* karern */
+/*Detalle del producto*/
+.detalle-producto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.detalle-producto img {
+    max-width: 100%;
+    max-height: 400px;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+.detalle-producto p {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+
+.contenido-detalle{
+   margin-top: 5rem;
+}
+
+.main-detalle{
+    padding-top: 4rem;
+    padding-bottom: 12rem;
+}
+/* .detalle{
+    padding-top: 3rem;
+} */
+.titulo_detalle{
+    font-size: 1.5rem;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+.detalle-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.detalle-items{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.detalle-titulo{
+    font-size: 1.2rem;
+}
+.detalle-img{
+    width: 50%;
+}
+.detalle-precio{
+    font-size: 1.2rem;
+}
+
+.detalle-descripcion p{
+    padding: 2rem;
+    font-size: center;
 }

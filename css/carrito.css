@@ -130,6 +130,23 @@ header .cart span{
 .grid-item[colspan="3"] {
     grid-column: span 3;
 }
+
+.grid-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text_carrito{
+    font-size: 1.1rem;
+    font-weight: 400;
+    padding-bottom: 2rem;
+}
+.text_precio{
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
 /* botones grid modal */
 .trash{
     font-size: 25px;

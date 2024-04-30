@@ -38,10 +38,10 @@ const crearModal2=(lista,nodo,total)=>{
     nodo.innerHTML="";
     
     let acumulador=`<div class="grid_carrito">
-                        <div class="grid-item text_center">Producto</div> 
-                        <div class="grid-item text_center">Precio</div>
-                        <div class="grid-item text_center">Cantidad</div>
-                        <div class="grid-item text_center" colspan="2">SubTotal</div>
+                        <div class="grid-item"><p class="text_carrito">Producto</p></div> 
+                        <div class="grid-item"><p class="text_carrito">Precio</p></div>
+                        <div class="grid-item"><p class="text_carrito">Cantidad</p></div>
+                        <div class="grid-item" colspan="2"><p class="text_carrito">SubTotal</p></div>
                     </div>`;
 
 
@@ -73,7 +73,7 @@ const crearModal2=(lista,nodo,total)=>{
 
     acumulador+=`<div class="grid_carrito">
                     <div class="grid-item text_center" colspan="3">Total</div> 
-                    <div class="grid-item text_center" colspan="2" id="montoTotal">$${total}</div>
+                    <div class="grid-item text_center" colspan="2" id="montoTotal"><p class="text_precio">$${total}</p></div>
                 </div>`
 
     nodo.innerHTML=acumulador;

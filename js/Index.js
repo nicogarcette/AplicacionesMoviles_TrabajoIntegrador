@@ -145,10 +145,16 @@ const AgregarCards=(data)=>{
 
         let card = document.createElement('article');
         card.classList.add('card');
-        card.innerHTML = `  <h2>${element.title}</h2>         
-                            <img class="card-img" src="${element.thumbnail}" alt="producto">
+        card.innerHTML = `  <p class="card-titulo">${element.title}</p>         
+                            <img class="card-img" src="${element.thumbnail}" alt="producto" data-id="${element.id}">
                             <p class="p-size">$${element.price}</p>
-                            <button id="btn-producto${element.id}" class="btn">Agregar</button>`;
+
+                            
+                            <div class="buttons-card">
+                                <button id="btn-producto${element.id}" class="btn">Agregar</button>
+                                <button id="btn-ver${element.id}" class="btn">ver mas</button>
+                            </div>
+                            `;
 
         allcards.appendChild(card);
     })
@@ -162,7 +168,13 @@ const AgregarCards=(data)=>{
         })
     })
 
+    data.results.forEach((element)=>{
+        document.getElementById(`btn-ver${element.id}`)?.addEventListener("click",()=>{
 
+            let detalleId = element.id;
+            window.location.href = `./pages/detalle.html?detalle=${detalleId}`
+        })
+    })
 }
 
 const GetProductByInput = async (input) =>{
@@ -181,9 +193,6 @@ document.querySelector('.search-form').addEventListener('submit', (event) => {
 
     GetProductByInput(valor);
 });
-
-
-
 
 selectBtn.addEventListener("click", ()=> optionMenu.classList.toggle("active"));
 
