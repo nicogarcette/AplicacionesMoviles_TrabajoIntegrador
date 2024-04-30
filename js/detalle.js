@@ -18,7 +18,7 @@ const cargarDetalle = async (DetalleId) =>{
                             <div class="detalle-card">
                                 <div class="detalle-items">
                                     <p class="detalle-titulo">${data.title}</p>
-                                    <img class="detalle-img" src="${data.thumbnail}" alt="">
+                                    <img class="detalle-img" src="${data.pictures[0].secure_url}" alt="">
                                     <p class="detalle-precio">$${data.price}</p>
                                 </div>
                                 <div class="detalle-descripcion">
