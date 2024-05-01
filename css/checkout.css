@@ -39,8 +39,8 @@
     border: 3px solid transparent;
     line-height: 45px;
     padding:0 40px 0 10px ;
+    font-size: 1rem;
     transition: .3s ease all;
-
 }
 .form_input:focus{
 
@@ -59,8 +59,8 @@
 
 .form_validacion-estado{
     position: absolute;
-    right: 10px;
-    bottom: 12px;
+    right: -42px;
+    bottom: 14px;
     z-index: 100;
     font-size: 16px;
     opacity: 0;
@@ -73,6 +73,7 @@
 }
 
 .form_mensajeError{
+    margin: 1rem 0;
     height: 45px;
     line-height: 45px;
     padding: 0 15px;
