@@ -1,0 +1,55 @@
+
+/*                             --------------checkout card------------ */
+.checkout_card{
+    width: 30%; 
+}
+.checkout_card-contenido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 20px;
+    height: auto;
+    transition: 0.4s all linear;
+}
+.checkout_card-contenido:hover{
+    transform:scale(1.05) ;
+    box-shadow: rgba(99, 99, 99, 0.2);
+}
+
+.checkout_table-product,
+.checkout_table-precio{
+    width: 100%;
+}
+
+/* scroll en la tabla  */
+thead, tbody { display: block; }
+
+tbody {
+    max-height: 310px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+
+}
+.t2{
+   width: 45%; 
+}
+
+.product-img{
+    width: 90%;
+}
+
+.table-subtotal{
+    width: 80%;
+    font-size: 1.2rem;
+    border-top: 1px solid rgba(190, 187, 180, 0.738);
+}
+.table-total{
+    font-size: 2rem;
+}
+.t1{
+    width: 90%;
+    text-align: start;
+    padding-left: 1.5rem;
+}

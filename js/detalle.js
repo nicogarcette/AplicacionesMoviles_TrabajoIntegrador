@@ -28,3 +28,4 @@ const cargarDetalle = async (DetalleId) =>{
                         </section>`
 
 }
+
