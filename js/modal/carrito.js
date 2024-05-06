@@ -1,5 +1,5 @@
 import { GetStorage, SaveStorage,DeleteStorage } from '../helpers/helper.js';
-import { listaCompra as carrito } from '../index.js';
+import { listaCompra as carrito } from '../Index.js';
 
 const botonesModal=document.getElementById("btnModal");
 const contenidoCarrito = document.getElementById("btnCart");
@@ -94,8 +94,21 @@ const agregarBotonesModal=()=>{
     `;
 
     // funcionalidad
-    //falta botonPagar
+    botonPagar();
     botonBorrar("limpiar");
+}
+
+// funcion concretar pago.
+const botonPagar = () =>{
+    
+        document.getElementById("pagar").addEventListener("click",()=>{
+            const loader = document.getElementById("loader");
+            loader.classList.remove("loader2");
+
+            setTimeout(() => {
+                location.href="../../pages/checkout.html";
+            }, 2000);
+        })
 }
 
 const botonBasura=()=>{

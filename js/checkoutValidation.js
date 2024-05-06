@@ -1,4 +1,3 @@
-// datos formulario
 const form = document.getElementById("form");
 const inputs = [...document.querySelectorAll(".form_input")]; 
 const nombre = document.getElementById("nombre");
@@ -7,6 +6,7 @@ const email = document.querySelector("#email");
 const phone = document.getElementById("phone");
 const dni = document.getElementById("dni");
 const formError = document.getElementById("form_mensajeError");
+const carrito = JSON.parse(localStorage.getItem("carrito"));
 
 // objeto con expreciones regulares para validar datos
 const expresiones = {
@@ -108,6 +108,7 @@ const checkoutFormulario = () =>{
         });
         
         if (checkCampos()) {
+            console.log("todo ok");
             const loader = document.getElementById("loader");
             loader.classList.remove("loader2");
             setTimeout(() => {
@@ -125,6 +126,48 @@ const checkoutFormulario = () =>{
     });
 }
 
+// consulta api mercadoPago para generar un link de pago
+const mercadoPago = async ()=>{
+    
 
+    const PagarCarrito = carrito.map(item => {
+        let newItem =     
+        {
+            title: item.nombre,
+            description: "",
+            picture_url: item.imagen,
+            category_id: item.id,
+            quantity: item.cantidad,
+            currency_id: "ARS",
+            unit_price: item.precio
+        }
+        return newItem;
+    });
+
+    try{
+        const response = await fetch("https://api.mercadopago.com/checkout/preferences",{
+            method:"POST",
+            headers:{
+                Authorization: "Bearer TEST-4610849640661972-061315-aea9319bfd6abb93cb6edda4b542dc98-709984540"
+                
+            },
+            body: JSON.stringify({
+                items: PagarCarrito,
+                back_urls: {
+                    "success": "http://127.0.0.1:5500/index.html",
+                    "failure": "http://127.0.0.1:5500/index.html",
+                    "pending": "http://127.0.0.1:5500/index.html"
+                },
+                auto_return: "approved"
+            })
+
+        });
+
+        const data= await response.json();
+        window.open(data.init_point, "_self")
+    }catch(error){
+        console.log(error);
+    }
+}
 
 checkoutFormulario();

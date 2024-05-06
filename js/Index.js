@@ -112,7 +112,6 @@ const AgregarBuscador = (categorias) =>{
                             </li>`;
     })
 
-
     const options = document.querySelectorAll(".option");
     const btnText = document.getElementById("select-text");
     
@@ -171,10 +170,24 @@ const AgregarCards=(data)=>{
     data.results.forEach((element)=>{
         document.getElementById(`btn-ver${element.id}`)?.addEventListener("click",()=>{
 
+            AddProductInHistorial(element);
+
             let detalleId = element.id;
             window.location.href = `./pages/detalle.html?detalle=${detalleId}`
         })
     })
+}
+
+const AddProductInHistorial = (element) =>{
+    let product = new producto(element.id,element.title,element.price,element.thumbnail);
+
+    let listaHistorial = JSON.parse(localStorage.getItem("historial")) || [];
+    let existe = listaHistorial.some(producto => producto.id === product.id);
+
+    if (!existe) {
+        listaHistorial.push(product);
+        SaveStorage("historial",JSON.stringify(listaHistorial));
+    }
 }
 
 const GetProductByInput = async (input) =>{

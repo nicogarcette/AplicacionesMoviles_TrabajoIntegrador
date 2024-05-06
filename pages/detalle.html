@@ -24,7 +24,7 @@
         <nav class="nav">
             <ul class="lista">
                 <li class="lis_item"><a href="../index.html">Inicio</a></li>
-                <li class="lis_item"><a href="encuesta.html">Encuesta</a></li>
+                <li class="lis_item"><a href="historial.html">Historial</a></li>
             </ul>
 
             <div class="cart">
@@ -42,7 +42,11 @@
         <div id="detalle" class="contenido-detalle">
 
         </div>
-
+        <div class=datos>
+            <section class="mapa">
+                <div id="myMap" class="datos_map"></div>
+            </section>
+        </div>
         <div id="modalCart" class="modal">
             <div class="modal-content modal_carrito">
                 
@@ -60,6 +64,7 @@
 
             </div>
         </div>
+        
 
     </main>
 
@@ -93,7 +98,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 </body>

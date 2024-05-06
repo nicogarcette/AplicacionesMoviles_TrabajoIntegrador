@@ -1,4 +1,90 @@
 .historial-main{
-/* de prueba */
-    margin-top: 50rem; 
+    padding-top: 7.4rem; 
+    padding-bottom: 14.5rem; 
 }
+
+.titulo-historial{
+    text-align: center;
+}
+
+.tabla{
+    width: 100%;
+    max-width: 720px;
+    margin: 3rem auto;
+    box-shadow: 0px 4px 20px rgba(5,57,94,.5);
+    -moz-box-shadow: 0px 4px 20px rgba(5,57,94,.5);
+    -webkit-box-shadow: 0px 4px 20px rgba(5,57,94,.5);
+    background-color: white;
+    border-radius: 20px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    text-align: center;
+
+}
+
+thead{
+    background-color: #DBE2EF;
+    border-radius: 20px;
+}
+
+th{
+    padding: .7rem;
+}
+
+.tabla-boton{
+    border: none;
+    background-color: transparent;
+    font-size: 1.1rem;
+    padding: 0 .3rem;
+    cursor: pointer;
+    
+}
+.verMas:hover{
+    color: blue ;
+
+}
+.delete:hover{
+    color: red ;
+}
+
+.content-vacio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 5rem;
+    padding-top: 5.2rem;
+}
+.content-vacio p{
+    font-size: 2rem;
+}
+.vacio{
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #06113C;
+    background: #06113C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.vacio:hover {
+    background: #fff;
+    color: #212529
+}
+.vacio p {
+    padding-right: 6px;
+}
+.vacio i {
+    font-size: 2rem;
+}
+
+
