@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="../css/estilo.css">
     <link rel="stylesheet" href="../css/carrito.css">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
 </head>
 <body>
 
@@ -44,11 +44,24 @@
         <div id="detalle" class="contenido-detalle">
 
         </div>
-        <div class=datos>
+        <div class="datos">
+            <div class="titulo-mapa">
+
+                <h3>Ubicacion vendedor</h3>
+                <button id="indication" class="indicaciones">    
+                    <p>Indicaciones</p>
+                    <i class="fa-solid fa-location-dot"></i>
+                </button>
+            </div>
+            
             <section class="mapa">
-                <div id="myMap" class="datos_map"></div>
+               
+                <div id="map" class="datos_map"></div>
+
             </section>
         </div>
+
+
         <div id="modalCart" class="modal">
             <div class="modal-content modal_carrito">
                 
@@ -76,7 +89,7 @@
             <article class="footer-contenido-card">
                 <h4>Contacto</h4>
                 <p>Horario de atención Lunes a Sábados de 9hs a 18hs</p>
-                <a href="">nico@hotmail.com</a>
+                <a href="">ezpe@hotmail.com</a>
             </article>
             <article class="footer-contenido-card">
                 <h4>Redes sociales</h4>
@@ -101,6 +114,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+    <!-- geolocalizacion -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 </body>

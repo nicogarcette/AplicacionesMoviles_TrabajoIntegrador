@@ -162,3 +162,31 @@ header .cart span{
     color: #B20600;
     cursor: pointer;
 }
+
+
+/* vista movile */
+@media screen and (max-width:768px){
+  
+    .modal_carrito {
+        width: 80%;
+    }
+    #btnModal{
+        display: flex;
+    }
+
+    #btnModal button
+    {
+        padding: 0.6rem;
+    }
+
+}
+@media screen and (min-width: 769px) and (max-width: 1199px) {
+    .modal_carrito {
+        width: 60%;
+    }
+}
+
+/* vista desktop */
+@media screen and (min-width:1200px){
+ 
+}

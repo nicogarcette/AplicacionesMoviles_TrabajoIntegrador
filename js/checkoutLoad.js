@@ -27,7 +27,7 @@ const llenarCard=()=>{
     checkoutProduct.innerHTML = tablas;
 }
 
-checkoutSubtotal.innerText="$"+subtotal;
-checkoutTotal.innerText="$"+subtotal;
+checkoutSubtotal.innerText="$"+subtotal.toFixed(2);
+checkoutTotal.innerText="$"+subtotal.toFixed(2);
 
 llenarCard();

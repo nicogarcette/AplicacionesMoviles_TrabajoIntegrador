@@ -56,11 +56,11 @@ const cargarTabla=()=>{
 const createRow = (element) =>{
 
     return `<tr>
-                <th><img style="width: 100px;" src="${element.imagen}" alt=""></th>
+                <th><img class="tabla-img" src="${element.imagen}" alt=""></th>
                 <th>${element.nombre}</th>
                 <th>$${element.precio ?? 0}</th>
                 <th>
-                    <button id="btn-ver${element.id}" class="tabla-boton"><i class="verMas fa-solid fa-magnifying-glass"></i></button>
+                    <button id="btn-ver${element.id}" class="tabla-boton"><i class="fa-solid fa-eye"></i></i></button>
                     <button id="btn-delete${element.id}" class="tabla-boton"><i class="delete fa-solid fa-trash"></i></button>
                 </th>
             </tr>`

@@ -10,7 +10,13 @@ const DeleteStorage = (clave) => {
     localStorage.removeItem(clave);
 }
 
+const DeleteElement = (clave, element) => {
+    
+    let storage = JSON.parse(GetStorage(clave));
+    let index = storage.findIndex(item => item.id === element.id);
+    storage.splice(index,1);
 
+    SaveStorage(clave, JSON.stringify(storage));
+}
 
-
-export { GetStorage, SaveStorage,DeleteStorage};
+export { GetStorage, SaveStorage,DeleteStorage,DeleteElement};

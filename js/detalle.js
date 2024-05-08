@@ -25,21 +25,119 @@ const cargarDetalle = async (DetalleId) =>{
                                     <p>${descripcion.plain_text}</p>
                                 </div>
                             </div>
-                        </section>`
+                        </section> 
+                    `
 
+
+    detalle.innerHTML +=  generarCaracteristicas(data.attributes);
+
+    let localidadVendedor = data.seller_address.city.name;
+    let pais = data.seller_address.country.name;
+    let ubicacion = `${localidadVendedor}, ${pais}`;
+    ubicacionVendedor(ubicacion)
+    document.getElementById("indication").addEventListener("click", ()=> calcularRuta(ubicacion));
 }
-const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 
-let mymap = L.map('myMap').setView([-34.9208699,-57.951581],13);
+const generarCaracteristicas =(atributos)=>{
+    
+    let section = `<section class="detalle">
+                        <h2 class="titulo_detalle">Caracteristicas</h2>
+                        <div class="caracteristicas">
+                        ${atributos.map(element =>{
+                            return `<div class="caracteristica_item">
+                                        <p class="caracteristica_item_p">${element.name}:</p>
+                                        <p>${element.value_name??'-'}</p>
+                                    </div>`
+                        }).join('')}
+                        </div>
+                    </section>`;
 
-L.tileLayer(tilesProvider, {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'your.mapbox.access.token'
-})
-.addTo(mymap);
+    return section;
+}
 
-let marker = L.marker([-34.9224369,-57.9555662]).addTo(mymap)
+var map = L.map('map');
+var control;
+
+// ubicacion directa del vendedor
+const ubicacionVendedor = (localidad) => {
+
+    fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(localidad))
+    .then(response => response.json())
+    .then(data => {
+        if (data.length > 0) {
+            var cordenadas = {
+                latitud : parseFloat(data[0].lat),
+                longitud : parseFloat(data[0].lon)
+            }
+
+            map = map.setView([cordenadas.latitud, cordenadas.longitud], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+            }).addTo(map);
+
+            L.marker([cordenadas.latitud,cordenadas.longitud]).addTo(map)
+            .bindPopup(`<b>${localidad}</b>`).openPopup();
+
+            control = L.Routing.control({
+                waypoints: [],
+                routeWhileDragging: true,
+                router: L.Routing.osrmv1({
+                    serviceUrl: 'https://router.project-osrm.org/route/v1'
+                })
+            }).addTo(map);
+
+        } else {
+            console.error("No se encontraron coordenadas para la localidad especificada.");
+        }
+    })
+    .catch(error => {
+        console.error("Error al obtener las coordenadas:", error);
+    });
+}
+
+const calcularRuta = (destino) => {
+    
+    // obtenemos las cordenas del destino
+    fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(destino))
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0) {
+                var destinoCoords = [data[0].lat, data[0].lon];
+
+                //obtenenmos el origen del usuario
+                navigator.geolocation.getCurrentPosition((position)=> {
+                    var origen = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    // vaciamos el marcador
+                    control.setWaypoints([]);
+ 
+                    // Establecemos los nuevos marcadores
+                    control.setWaypoints([
+                        L.latLng(origen.lat, origen.lng),
+                        L.latLng(destinoCoords[0], destinoCoords[1])
+                    ]);
+                    
+                    // Centramos el mapa en la ubi del usuario
+                    map.setView([origen.lat, origen.lng], 12);
+
+                    L.marker([origen.lat, origen.lng]).addTo(map)
+                        .bindPopup(`<b>Tu ubicación</b>`).openPopup();
+
+                    L.marker([destinoCoords[0], destinoCoords[1]]).addTo(map)
+                        .bindPopup(`<b>Vendedor:</b><br>${destino}`).openPopup();
+
+                }, function () {
+                    alert('No se pudo obtener la ubicación del usuario.');
+                });
+            } else {
+                alert('No se ha encontrado el destino.');
+            }
+        })
+        .catch(error => {
+            console.error('Error al geocodificar:', error);
+        });
+}

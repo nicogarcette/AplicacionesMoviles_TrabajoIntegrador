@@ -167,10 +167,9 @@
 thead, tbody { display: block; }
 
 tbody {
-    max-height: 310px;       /* Just for the demo          */
-    overflow-y: auto;    /* Trigger vertical scroll    */
-    overflow-x: hidden;  /* Hide the horizontal scroll */
-
+    max-height: 310px;      
+    overflow-y: auto;    
+    overflow-x: hidden;  
 }
 .t2{
    width: 45%; 
@@ -192,4 +191,75 @@ tbody {
     width: 90%;
     text-align: start;
     padding-left: 1.5rem;
+}
+
+/* vista movile */
+@media screen and (max-width:768px){
+   
+    /* CHECKOUT  */
+    /* form */
+    .checkout{
+        height:auto;
+    }
+    .checkout_titulo{
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+    }
+    .form{
+        grid-template-columns: 1fr;
+        width: 90%;
+        margin: auto;
+        padding-bottom: 2rem;
+    }
+    .form_mensajeError,
+    .form_grupo-btn{
+        grid-column:  1;
+        padding: 1rem;
+    }
+
+    .form_input{
+        width: 85%;
+    }
+    .form_validacion-estado{
+        right: 15px;
+    }
+
+    /* fin form */
+
+    /* card */
+
+    .checkout_contenido{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .checkout_card{
+        width: 90%; 
+        margin-bottom: 1rem;
+    }
+
+    .product-img{
+        width: 100%;
+    }
+    /* FIN CHECKOUT */
+}
+
+@media screen and (min-width: 769px) and (max-width: 1199px) {
+    .checkout_card{
+        width: 40%;
+        margin-top: 2.5rem;
+    }
+    .card-img{
+        width: 300px;
+    }
+}
+
+/* vista desktop */
+@media screen and (min-width:1200px){s
+    .card-img{
+        width: 300px;
+    }
+    /* fin index */
+    .checkout_card{
+        margin-top: 1.5rem;
+    }
 }

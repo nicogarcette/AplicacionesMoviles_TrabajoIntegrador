@@ -1,4 +1,4 @@
-import { GetStorage, SaveStorage,DeleteStorage } from '../helpers/helper.js';
+import { GetStorage, SaveStorage,DeleteStorage,DeleteElement } from '../helpers/helper.js';
 import { listaCompra as carrito } from '../Index.js';
 
 const botonesModal=document.getElementById("btnModal");
@@ -118,13 +118,12 @@ const botonBasura=()=>{
         document.getElementById(`trash${element.id}`).addEventListener("click",()=>{
 
             let posicion = carrito.GetCarrito().indexOf(element);
-           borrarProductoModal(posicion);
-           DeleteStorage("carrito");
+            borrarProductoModal(posicion);
+
+            DeleteElement("carrito",element);
         })
 
     });
-
-
 }
 
 const botonSumaResta=()=>{

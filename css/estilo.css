@@ -468,13 +468,17 @@ header .cart span{
     margin: 0.2rem;
 }
 
-
+/* .main-detalle{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+} */
 
 .detalle {
     justify-content: center;
     max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 4rem auto;
+    padding: 0.5rem;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -532,7 +536,6 @@ header .cart span{
 }
 
 .titulo_detalle{
-    margin-top: 35px;
     font-size: 1.5rem;
     text-align: center;
 }
@@ -555,44 +558,86 @@ header .cart span{
     padding: 20px;
     border-top: 1px solid #ccc;
 }
+.caracteristicas{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 1rem;
+}
+.caracteristica_item{
+    display: flex;
+}
+.caracteristica_item p{
+    font-size: 12px;
+    padding-right: 0.5rem;
+}
+.caracteristica_item_p{
+    font-weight: bold;
+}
+/*MAPA*/
 
-
-/* mercado */
-
-#form-checkout {
+.datos{
+    /* text-align: center; */
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    align-items: center;
 }
-
-.container {
-    height: 18px;
-    display: inline-block;
-    border: 1px solid rgb(118, 118, 118);
-    border-radius: 2px;
-    padding: 1px 2px;
-}
-
-
-  /*MAPA*/
-.datos{
+#map{
     width: 50%;
-    margin-top: 3%;
-    margin-left: 25%;
-    border-radius: 8px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); 
 }
 .mapa{
     width: 90%;
+    height: 400px;
     text-align: center;
-    margin-left: 5%;
     margin-top: 3%;
-    padding-bottom: 3%
+    padding-bottom: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.titulo-mapa{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 2rem;
 }
 .datos_map{
     width: 100%;
     height: 300px;
     align-self: end;
+    border-radius: 12px;
+}
+
+.indicaciones{
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #06113C;
+    background: #06113C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    margin: auto;
+}
+
+.indicaciones:hover {
+    background: #fff;
+    color: #212529
+}
+.indicaciones p {
+    padding-right: 2px;
+    font-size: 1rem;
+}
+.indicaciones i {
+    font-size: 1rem;
 }
 
   /* RESPONSIVE */
@@ -641,6 +686,12 @@ header .cart span{
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 
+    #map{
+        width: 90%;
+    }
+    .caracteristicas{
+        grid-template-columns: 1fr;
+    }
     
 }
 

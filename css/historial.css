@@ -39,6 +39,10 @@ th{
     cursor: pointer;
     
 }
+
+.tabla-img{
+    width: 100px;
+}
 .verMas:hover{
     color: blue ;
 
@@ -85,6 +89,19 @@ th{
 }
 .vacio i {
     font-size: 2rem;
+}
+
+/* vista movile */
+@media screen and (max-width:768px){
+  
+}
+@media screen and (min-width: 769px) and (max-width: 1199px) {
+  
+}
+
+/* vista desktop */
+@media screen and (min-width:1200px){
+ 
 }
 
 

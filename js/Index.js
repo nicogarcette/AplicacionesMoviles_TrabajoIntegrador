@@ -88,10 +88,6 @@ const url = 'https://api.mercadolibre.com/sites/MLA/';
 const UrlCategorias = "categories";
 const categorias = await getCategorias();
 
-const optionMenu = document.querySelector(".select-menu");
-const selectBtn = document.querySelector(".select-btn");
-
-
 const GetCategoriaRandon=(categorias)=>{
 
     let indiceRandon = Math.floor(Math.random() * categorias.length);
@@ -197,6 +193,14 @@ const GetProductByInput = async (input) =>{
     AgregarCards(data);
 }
 
+const optionMenu = document.querySelector(".select-menu");
+const selectBtn = document.querySelector(".select-btn");
+
+selectBtn.addEventListener("click", () => { 
+    optionMenu.classList.toggle('active');
+} );
+
+
 // Manejar el evento submit del formulario
 document.querySelector('.search-form').addEventListener('submit', (event) => {
     event.preventDefault();
@@ -207,7 +211,6 @@ document.querySelector('.search-form').addEventListener('submit', (event) => {
     GetProductByInput(valor);
 });
 
-selectBtn.addEventListener("click", ()=> optionMenu.classList.toggle("active"));
 
 cargarProductos(GetCategoriaRandon(categorias));
 AgregarBuscador(categorias.slice(0,10));
