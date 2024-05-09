@@ -1,37 +1,33 @@
-import { GetStorage, SaveStorage,DeleteStorage,DeleteElement } from '../helpers/helper.js';
-import { listaCompra as carrito } from '../Index.js';
+import {SaveStorage,DeleteElement, DeleteStorage,GetStorage} from '../helpers/helper.js';
+import carrito from '../class/carrito.js';
 
 const botonesModal=document.getElementById("btnModal");
 const contenidoCarrito = document.getElementById("btnCart");
+const itemTotal= document.getElementById("item_total");
 
-// modal Cart
 document.getElementById('openCart').addEventListener('click', (event)=> {
     event.preventDefault();
+    agregarBotonesCarrito();
     document.getElementById('modalCart').style.display = 'block';
 });
-  
+
 document.getElementsByClassName('close')[0].addEventListener('click', ()=> {
     document.getElementById('modalCart').style.display = 'none';
 });
-  
+
 window.addEventListener('click', (event)=> {
     if (event.target == document.getElementById('modalCart')) {
-      document.getElementById('modalCart').style.display = 'none';
+    document.getElementById('modalCart').style.display = 'none';
     }
 });
-
 
 // funcionalidad al boton carrito. 
 const agregarBotonesCarrito = () =>{
 
-    document.getElementById("openCart").addEventListener("click",()=>{
-        
-        if (carrito && carrito.GetCarrito().length!=0) {
+    if (carrito && carrito.GetCarrito().length!=0) {
        
-            crearModal2(carrito.GetCarrito(), contenidoCarrito, carrito.Subtotal());
-        }
-    })
-
+        crearModal2(carrito.GetCarrito(), contenidoCarrito, carrito.Subtotal());
+    }
 }
 
 const crearModal2=(lista,nodo,total)=>{
@@ -82,11 +78,6 @@ const crearModal2=(lista,nodo,total)=>{
     botonSumaResta();
 }
 
-const limpiarModal=()=>{
-    contenidoCarrito.innerHTML= `<p class="p-size">Carrito vacio</p>`;
-    botonesModal.innerHTML="";
-}
-
 const agregarBotonesModal=()=>{
     
     botonesModal.innerHTML=`<button id="pagar" type="button" class="btn" data-bs-dismiss="modal">Pagar</button>
@@ -96,6 +87,11 @@ const agregarBotonesModal=()=>{
     // funcionalidad
     botonPagar();
     botonBorrar("limpiar");
+}
+
+const limpiarModal=()=>{
+    contenidoCarrito.innerHTML= `<p class="p-size">Carrito vacio</p>`;
+    botonesModal.innerHTML="";
 }
 
 // funcion concretar pago.
@@ -167,7 +163,7 @@ const borrarProductoModal = (index) =>{
     
     }
     
-    carrito.ActualizarCarrito();
+    itemTotal.innerHTML = carrito.ActualizarCarrito();
 }
 
 const ActualizarModal=(id,precio,cantidad)=>{
@@ -181,10 +177,13 @@ const ActualizarModal=(id,precio,cantidad)=>{
 
     let montoTotal=document.getElementById("montoTotal");
     montoTotal && (montoTotal.innerText="$"+carrito.Subtotal());
-    carrito.ActualizarCarrito();
+    itemTotal.innerHTML = carrito.ActualizarCarrito();
 }
 
-agregarBotonesCarrito();
+const LimpiarCarrito = () =>{
+    itemTotal.innerHTML = carrito.LimpiarCarrito();
+    DeleteStorage("carrito");
+}
 
 const botonBorrar =() => {
     document.getElementById("limpiar").addEventListener("click",()=>{
@@ -202,7 +201,7 @@ const botonBorrar =() => {
             'EL carrito vacio!',
             'continuar',
             'success',
-            carrito.LimpiarCarrito(),
+            LimpiarCarrito(),
             limpiarModal()
         )
         }})

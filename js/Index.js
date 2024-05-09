@@ -1,91 +1,27 @@
-import { GetStorage, SaveStorage ,DeleteStorage} from './helpers/helper.js';
+import { GetStorage, SaveStorage} from './helpers/helper.js';
+import carrito from './class/carrito.js';
+import producto  from './class/producto.js';
 
 const itemTotal= document.getElementById("item_total");
 const KeyCarrito = "carrito"
-
-class producto{
-    constructor(id,nombre,precio,imagen){
-
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.imagen = imagen;
-        this.cantidad = 1;
-    }
-}
-
-class Carrito{
-    constructor(){
-
-        this.carrito=[];
-    }
-
-    GetCarrito(){
-        return this.carrito;
-    }
-
-    AddProducto(producto){
-
-        let existe = this.carrito.find(item => item.id === producto.id);
-        
-        existe ?  existe.cantidad++ : this.carrito.push({...producto});
-    }
-
-    RemoverItem(posicion){
-        this.carrito.splice(posicion,1);
-    }
-
-    cantidadDeProductos() {
-        let cantidadTotal = this.carrito.reduce( (total, item) => total + item.cantidad, 0 );            
-        return cantidadTotal;
-    }
-
-    Subtotal(){
-        let precioTotal = this.carrito.reduce( (acumulador, x) => acumulador + ( x.precio * x.cantidad) ,0);
-        return precioTotal.toFixed(2);
-    }
-
-    LimpiarCarrito(){
-
-        this.carrito.splice(0, this.carrito.length);
-        DeleteStorage("carrito");
-        itemTotal.innerHTML = 0;
-    }
-    
-    ActualizarCarrito(){
-        let cantidad = this.cantidadDeProductos();
-        itemTotal.innerHTML = cantidad;
-    }
-}
-export const listaCompra = new Carrito;
+const url = 'https://api.mercadolibre.com/sites/MLA/';
+const UrlCategorias = "categories";
 
 const ActualizarContador = () =>{
-    let cantidad = listaCompra.cantidadDeProductos();
+    let cantidad = carrito.cantidadDeProductos();
     itemTotal.innerHTML = cantidad;
-}
-
-const cargarCarrito = () =>{
-    var listaCarrito =JSON.parse(GetStorage(KeyCarrito));
-
-    if(listaCarrito && listaCarrito.length !== 0){
-        listaCompra.carrito = listaCarrito;
-        ActualizarContador();
-    }
 }
 
 const GetData = async (url)=>{
     const response = await fetch(url);
-    let data = await response.json();
-
-    return data;
+    return await response.json();;
 }
 
 const getCategorias = async () =>{
 
     return await GetData(url+UrlCategorias);
 }
-const url = 'https://api.mercadolibre.com/sites/MLA/';
-const UrlCategorias = "categories";
+
 const categorias = await getCategorias();
 
 const GetCategoriaRandon=(categorias)=>{
@@ -157,8 +93,8 @@ const AgregarCards=(data)=>{
     data.results.forEach((element)=>{
         document.getElementById(`btn-producto${element.id}`)?.addEventListener("click",()=>{
 
-            listaCompra.AddProducto(new producto(element.id,element.title,element.price,element.thumbnail));
-            SaveStorage(KeyCarrito,JSON.stringify(listaCompra.GetCarrito()));
+            carrito.AddProducto(new producto(element.id,element.title,element.price,element.thumbnail));
+            SaveStorage(KeyCarrito,JSON.stringify(carrito.GetCarrito()));
             ActualizarContador();
         })
     })
@@ -200,7 +136,6 @@ selectBtn.addEventListener("click", () => {
     optionMenu.classList.toggle('active');
 } );
 
-
 // Manejar el evento submit del formulario
 document.querySelector('.search-form').addEventListener('submit', (event) => {
     event.preventDefault();
@@ -211,7 +146,6 @@ document.querySelector('.search-form').addEventListener('submit', (event) => {
     GetProductByInput(valor);
 });
 
-
 cargarProductos(GetCategoriaRandon(categorias));
 AgregarBuscador(categorias.slice(0,10));
-cargarCarrito();
+ActualizarContador();
