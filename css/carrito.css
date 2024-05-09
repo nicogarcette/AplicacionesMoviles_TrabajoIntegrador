@@ -108,7 +108,7 @@ header .cart span{
 .modal_carrito_body{
     display: flex;
     flex-direction: column;
-    
+    align-items: center;
     max-height: 310px;     
     overflow-y: auto;    
     overflow-x: hidden;  
