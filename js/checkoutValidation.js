@@ -154,9 +154,9 @@ const mercadoPago = async ()=>{
             body: JSON.stringify({
                 items: PagarCarrito,
                 back_urls: {
-                    "success": "http://127.0.0.1:5501/index.html",
-                    "failure": "http://127.0.0.1:5501/index.html",
-                    "pending": "http://127.0.0.1:5501/index.html"
+                    "success": "http://127.0.0.1:5500/pages/ticket.html",
+                    "failure": "http://127.0.0.1:5500/pages/ticket.html",
+                    "pending": "http://127.0.0.1:5500/pages/ticket.html"
                 },
                 auto_return: "approved"
             })

@@ -129,8 +129,6 @@ main{
     cursor: pointer;
 }
 .card-img{
-    /* width: 250px; */
-
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -149,9 +147,7 @@ main{
     margin-top: 5px;    
 }
 
-.main-remeras{
-    padding-bottom: 7.5rem;
-}
+
 
 /* ----footer---- */
 .footer{
@@ -640,6 +636,56 @@ header .cart span{
     font-size: 1rem;
 }
 
+/* pantalla de ticket */
+
+.main-ticket{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 78vh;
+}
+.ticket{
+    width: 30%;
+    background-color:#fff; 
+    border-radius: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ticket h2{
+   font-size: 1.5rem;
+}
+.ticket-img{
+    padding-top: 2rem;
+    width: 80%;
+    height: auto;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+.ticket a{
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    margin: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 0.7rem;
+    border: 2px solid #06113C;
+    background: #06113C;
+}
+
+.ticket a:hover {
+    background: #fff;
+    color: #06113C
+}
+
+
+.ticket span {
+    font-weight: bold;
+}
+
   /* RESPONSIVE */
   /* Para celulares */
 @media screen and (max-width: 767px) {
@@ -692,6 +738,17 @@ header .cart span{
     .caracteristicas{
         grid-template-columns: 1fr;
     }
+
+    .ticket{
+        width: 80%;
+    }
+    .ticket h2{
+        font-size: 1.2rem;
+    }
+
+    .ticket p{
+        font-size: 0.8rem;
+    }
     
 }
 
@@ -710,6 +767,10 @@ header .cart span{
 
     .select-menu {
         margin-left: 20px; 
+    }
+
+    .ticket{
+        width: 50%;
     }
 }
 
