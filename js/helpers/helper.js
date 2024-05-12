@@ -19,4 +19,10 @@ const DeleteElement = (clave, element) => {
     SaveStorage(clave, JSON.stringify(storage));
 }
 
-export { GetStorage, SaveStorage,DeleteStorage,DeleteElement};
+const GetData = async (url)=>{
+    const response = await fetch(url);
+    return await response.json();;
+}
+
+
+export { GetStorage, SaveStorage,DeleteStorage,DeleteElement, GetData};

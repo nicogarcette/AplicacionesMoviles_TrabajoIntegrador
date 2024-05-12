@@ -1,4 +1,4 @@
-import { GetStorage, SaveStorage} from './helpers/helper.js';
+import {SaveStorage,GetData} from './helpers/helper.js';
 import carrito from './class/carrito.js';
 import producto  from './class/producto.js';
 
@@ -10,11 +10,6 @@ const UrlCategorias = "categories";
 const ActualizarContador = () =>{
     let cantidad = carrito.cantidadDeProductos();
     itemTotal.innerHTML = cantidad;
-}
-
-const GetData = async (url)=>{
-    const response = await fetch(url);
-    return await response.json();;
 }
 
 const getCategorias = async () =>{
@@ -31,7 +26,7 @@ const GetCategoriaRandon=(categorias)=>{
     return categoriaRamdon.id;
 }
 
-const UrlByCategoria =(categoria)=> `search?category=${categoria}&limit=10`;
+const UrlByCategoria =(categoria)=> `search?category=${categoria}&limit=12`;
 const UrlByInput =(input)=> `search?q=${input}&limit=10`;
 
 const AgregarBuscador = (categorias) =>{
@@ -45,16 +40,15 @@ const AgregarBuscador = (categorias) =>{
     })
 
     const options = document.querySelectorAll(".option");
-    const btnText = document.getElementById("select-text");
     
     options.forEach(option=>{
         option.addEventListener("click",()=>{
-            
-            let category = option.querySelector(".option-text");
-            btnText.innerText = category.textContent;
-            cargarProductos(category.getAttribute('data-value'));
 
-            optionMenu.classList.remove("active");
+            let category = option.querySelector(".option-text");
+            SaveStorage("categoria",option.textContent)
+            let categoryId = category.getAttribute('data-value');
+            window.location.href = `./pages/categorias.html?category=${categoryId}`
+              
         })
     })
 
@@ -147,5 +141,5 @@ document.querySelector('.search-form').addEventListener('submit', (event) => {
 });
 
 cargarProductos(GetCategoriaRandon(categorias));
-AgregarBuscador(categorias.slice(0,10));
+AgregarBuscador(categorias);
 ActualizarContador();

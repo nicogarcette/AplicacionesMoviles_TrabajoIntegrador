@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio/ezpe</title>
+    <title>Categorias/ezpe</title>
     
     <!-- fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,10 +15,7 @@
     <link rel="stylesheet" href="../css/carrito.css">
     <link rel="stylesheet" href="../css/loader.css">
 
-    <link rel="icon" type="image/png" href="../img/mercado.png">
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="icon" type="image/png" href="./img/mercado.png">
 </head>
 <body>
 
@@ -29,7 +26,7 @@
         <nav class="nav">
             <ul class="lista">
                 <li class="lis_item"><a href="../index.html">Inicio</a></li>
-                <li class="lis_item"><a href="historial.html">Historial</a></li>
+                <li class="lis_item"><a href="./historial.html">Historial</a></li>
             </ul>
 
             <div class="cart">
@@ -41,30 +38,35 @@
         </nav>
     </header>
 
-    <main class="main-detalle">
+    <main>
 
-        <!-- detalle -->
-        <div id="detalle" class="contenido-detalle">
+        <div class="contenido">
+            <h2 class="titulo_categoria"></h2>
 
-        </div>
-        <div class="datos">
-            <div class="titulo-mapa">
-
-                <h3>Ubicacion vendedor</h3>
-                <button id="indication" class="indicaciones">    
-                    <p>Indicaciones</p>
-                    <i class="fa-solid fa-location-dot"></i>
-                </button>
+            <div class="show-filter">
+                <div class="filter-btn">
+                    <span id="select-text" class="btn-text">Filtros</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                
             </div>
-            
-            <section class="mapa">
-               
-                <div id="map" class="datos_map"></div>
+            <div class="content-filter">
+                <form id="form_filter" class="form_filter">            
+                </form>
+    
+                <div> 
+                    <button id="filtrar" class="btn-filtrar">Filtrar</button>
+                    <button id="limpiar-filtro" class="btn-limpiar">Limpiar Filtros</button>
+                </div>
+            </div>
 
+            <section class="categoria">
+                <div id="cards-productos" class="cards">
+                    
+                </div>
             </section>
         </div>
-
-
+    
         <div id="modalCart" class="modal">
             <div class="modal-content modal_carrito">
                 
@@ -82,7 +84,6 @@
 
             </div>
         </div>
-        
 
     </main>
 
@@ -107,23 +108,16 @@
             <p>Aplicaciones Moviles 2024</p>
         </div>
     </footer>
+
     <!-- loader -->
     <div id="loader" class="lds-ring loader loader2">
         <div></div><div></div><div></div><div></div>
     </div>
 
     <script src="https://kit.fontawesome.com/6a02e16f95.js" crossorigin="anonymous"></script>
-    <script type="module" src="../js/detalle.js"></script>
     <script type="module" src="../js/modal/carrito.js"></script>
-
+    <script type="module" src="../js/categorias.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-
-    <!-- geolocalizacion -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
-
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
 </body>
 </html>

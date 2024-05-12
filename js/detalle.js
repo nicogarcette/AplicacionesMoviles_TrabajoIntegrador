@@ -3,9 +3,10 @@ import { calcularRuta, ubicacionVendedor} from './geolocalizacion.js';
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const DetalleId = urlParams.get('detalle');
-
     cargarDetalle(DetalleId);
+    ActualizarContador();
 });
+
 
 const cargarDetalle = async (DetalleId) =>{
 
@@ -54,4 +55,10 @@ const generarCaracteristicas =(atributos)=>{
                     </section>`;
 
     return section;
+}
+
+const ActualizarContador = () =>{
+    const itemTotal = document.getElementById("item_total");
+    let cantidad = carrito.cantidadDeProductos();
+    itemTotal.innerHTML = cantidad;
 }
