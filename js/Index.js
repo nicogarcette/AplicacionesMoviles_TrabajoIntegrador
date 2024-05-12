@@ -72,9 +72,8 @@ const AgregarCards=(data)=>{
         card.classList.add('card');
         card.innerHTML = `  <p class="card-titulo">${element.title}</p>         
                             <img class="card-img" src="${element.thumbnail}" alt="producto" data-id="${element.id}">
-                            <p class="p-size">$${element.price}</p>
+                            <p class="p-size">$${element.price?? 0}</p>
 
-                            
                             <div class="buttons-card">
                                 <button id="btn-producto${element.id}" class="btn">Agregar</button>
                                 <button id="btn-ver${element.id}" class="btn">ver mas</button>
