@@ -8,14 +8,14 @@ const dni = document.getElementById("dni");
 const formError = document.getElementById("form_mensajeError");
 const carrito = JSON.parse(localStorage.getItem("carrito"));
 
-// objeto con expreciones regulares para validar datos
+
 const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, 
 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 	phone: /^\d{8,14}$/ 
 }
 
-// objeto para validar que todos los campos esten correctos.
+
 const campos={
     nombre:false,
     surname:false,

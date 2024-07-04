@@ -1,7 +1,7 @@
 var map = L.map('map');
 var control;
 
-// ubicacion directa del vendedor
+
 const ubicacionVendedor = (localidad) => {
 
     fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(localidad))
@@ -41,30 +41,29 @@ const ubicacionVendedor = (localidad) => {
 
 const calcularRuta = (destino) => {
     
-    // obtenemos las cordenas del destino
+    // obtenemos las cordenas 
     fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(destino))
         .then(response => response.json())
         .then(data => {
             if (data.length > 0) {
                 var destinoCoords = [data[0].lat, data[0].lon];
 
-                //obtenenmos el origen del usuario
+                // origen del usuario
                 navigator.geolocation.getCurrentPosition((position)=> {
                     var origen = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
 
-                    // vaciamos el marcador
+             
                     control.setWaypoints([]);
  
-                    // Establecemos los nuevos marcadores
+                    // nuevo marcador
                     control.setWaypoints([
                         L.latLng(origen.lat, origen.lng),
                         L.latLng(destinoCoords[0], destinoCoords[1])
                     ]);
-                    
-                    // Centramos el mapa en la ubi del usuario
+            
                     map.setView([origen.lat, origen.lng], 12);
 
                     L.marker([origen.lat, origen.lng]).addTo(map)

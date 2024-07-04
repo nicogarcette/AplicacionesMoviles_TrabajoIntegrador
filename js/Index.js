@@ -129,7 +129,7 @@ selectBtn.addEventListener("click", () => {
     optionMenu.classList.toggle('active');
 } );
 
-// Manejar el evento submit del formulario
+
 document.querySelector('.search-form').addEventListener('submit', (event) => {
     event.preventDefault();
 
